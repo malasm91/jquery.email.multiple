@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Email Multiple JQuery Event</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="email.multiple.css">
+
+
+    <!-- jQuery library -->
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="col-sm-12 email-id-row">
+
+        <input type="text" id="essai" placeholder="essai">
+    </div>
+
+    <script src="jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="bootstrap.min.js"></script>
+    <script src="jquery.email.multiple.js"></script>
+    <script>
+        $(document).ready(function($){
+            let data = [
+                "amadou@gmail.com",
+                "diallo@gmail.com"
+            ]
+            $("#essai").email_multiple({
+                data,
+                //reset: true
+            })
+        });
+    </script>
+</div>
