@@ -10,7 +10,9 @@
         let defaults = {
             reset: false,
             fill: false,
-            data: null
+            data: null,
+            name: 'def',
+            label: 'Email :'
         };
 
         let settings = $.extend(defaults, options);
@@ -18,17 +20,17 @@
 
         return this.each(function()
         {
-            $(this).after("<span class=\"to-input\">Email :</span>\n" +
-                "<div class=\"all-mail\"></div>\n" +
-                "<input type=\"text\" name=\"email\" class=\"enter-mail-id\" placeholder=\"Entrer l'email ...\" />");
+            $(this).after("<div id=\"container-" + settings.name +"\"><span class=\"to-input\">" + settings.label + "</span>\n" +
+                "<div id=\"all-mail" + settings.name + "\"></div>\n" +
+                "<input type=\"text\" name=\"email" + settings.name + "\" class=\"enter-mail-id" + settings.name + "\" placeholder=\"Enter Email ...\" /></div>");
             let $orig = $(this);
-            let $element = $('.enter-mail-id');
+            let $element = $('.enter-mail-id' + settings.name);
             $element.keydown(function (e) {
                 $element.css('border', '');
                 if (e.keyCode === 13 || e.keyCode === 32) {
                     let getValue = $element.val();
                     if (/^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/.test(getValue)){
-                        $('.all-mail').append('<span class="email-ids">' + getValue + '<span class="cancel-email">x</span></span>');
+                        $('#all-mail' + settings.name).append('<span class="email-ids">' + getValue + '<span class="cancel-email">x</span></span>');
                         $element.val('');
 
                         email += getValue + ';'
@@ -47,7 +49,7 @@
             if(settings.data){
                 $.each(settings.data, function (x, y) {
                     if (/^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/.test(y)){
-                        $('.all-mail').append('<span class="email-ids">' + y + '<span class="cancel-email">x</span></span>');
+                        $('#all-mail' + settings.name).append('<span class="email-ids">' + y + '<span class="cancel-email">x</span></span>');
                         $element.val('');
 
                         email += y + ';'
